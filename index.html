@@ -522,7 +522,7 @@
 
     <script>
         // Simple router logic to switch between sections
-        function navigate(sectionId) {
+        function navigate(sectionId, updateUrl = true) {
             // Hide all sections
             const sections = document.querySelectorAll('.section-content');
             sections.forEach(section => {
@@ -542,7 +542,7 @@
             }
 
             // Set active state on corresponding nav links (desktop + mobile)
-            const targetLinks = document.querySelectorAll(`[onclick="navigate('${sectionId}')"], [onclick="navigate('${sectionId}'); toggleMobileMenu()"]`);
+            const targetLinks = document.querySelectorAll(`[onclick*="navigate('${sectionId}')"]`);
             targetLinks.forEach(link => {
                 if (link.id) { // Apply styling mainly to desktop header links with IDs
                    link.classList.add('active-nav');
@@ -551,6 +551,11 @@
 
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Update the URL without reloading the page
+            if (updateUrl) {
+                history.pushState({ section: sectionId }, '', '#' + sectionId);
+            }
         }
 
         // Mobile menu toggle
@@ -563,10 +568,32 @@
             }
         }
 
-        // Initialize default view
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', (event) => {
+            if (event.state && event.state.section) {
+                navigate(event.state.section, false);
+            } else {
+                // Fallback: check hash on popstate if no state
+                const hash = window.location.hash.substring(1);
+                if (hash && document.getElementById(hash)) {
+                    navigate(hash, false);
+                } else {
+                    navigate('home', false);
+                }
+            }
+        });
+
+        // Initialize default view based on URL hash
         document.addEventListener('DOMContentLoaded', () => {
-            // Ensure home is visible initially
-            navigate('home');
+            const hash = window.location.hash.substring(1);
+            
+            // If there's a valid hash in the URL, load that section
+            if (hash && document.getElementById(hash)) {
+                navigate(hash, false);
+            } else {
+                // Ensure home is visible initially
+                navigate('home', false);
+            }
         });
     </script>
 </body>
