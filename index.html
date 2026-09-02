@@ -23,6 +23,9 @@
     <!-- NOTE: For best results, og:image should be 1200x630 pixels -->
     <meta property="og:image" content="https://ghosttoguest.com/ghosttoguest_banner.jpg">
     <meta property="og:image:alt" content="Ghost to Guest Conceptual Framework Diagram">
+    <meta property="og:image:width" content="920">
+    <meta property="og:image:height" content="1647">
+    <meta name="theme-color" content="#0f172a">
 
     <!-- Twitter (X) -->
     <meta property="twitter:card" content="summary_large_image">
@@ -42,28 +45,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script type="application/ld+json">
-        {
-          "@context": "[https://schema.org](https://schema.org)",
-          "@type": "EducationalOrganization",
-          "name": "Ghost to Guest Institute",
-          "url": "[https://ghosttoguest.com](https://ghosttoguest.com)",
-          "logo": "[https://ghosttoguest.com/ghosttoguest_banner.png](https://ghosttoguest.com/ghosttoguest_banner.png)",
-          "sameAs": [
-                "https://www.instagram.com/ghost.to.guest/",
-                "https://www.youtube.com/@GhosttoGuest"
-              ],
-          "founder": {
-            "@type": "Person",
-            "name": "Dr. Tubanur Bayram Kuzgun",
-            "jobTitle": "Clinical Psychologist and Assistant Professor"
-          },
-          "description": "An independent academic and clinical framework dedicated to rethinking the intersections of psychological classification, identity, and the philosophy of psychiatry."
-        }
-    </script>
-    <!-- Tailwind Custom Configuration -->
+    <!-- Tailwind Custom Configuration (must run before the CDN script) -->
     <script>
         tailwind.config = {
             theme: {
@@ -83,6 +65,28 @@
                     }
                 }
             }
+        }
+    </script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- JSON-LD (fixed plain URLs) -->
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "EducationalOrganization",
+          "name": "Ghost to Guest Institute",
+          "url": "https://ghosttoguest.com",
+          "logo": "https://ghosttoguest.com/ghosttoguest_banner.png",
+          "sameAs": [
+                "https://www.instagram.com/ghost.to.guest/",
+                "https://www.youtube.com/@GhosttoGuest"
+              ],
+          "founder": {
+            "@type": "Person",
+            "name": "Dr. Tubanur Bayram Kuzgun",
+            "jobTitle": "Clinical Psychologist and Assistant Professor"
+          },
+          "description": "An independent academic and clinical framework dedicated to rethinking the intersections of psychological classification, identity, and the philosophy of psychiatry."
         }
     </script>
 
@@ -158,15 +162,15 @@
                 
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide uppercase text-institute-navy">
-                    <button onclick="navigate('home')" class="nav-link active-nav" id="nav-home">Home</button>
-                    <button onclick="navigate('about')" class="nav-link" id="nav-about">About</button>
-                    <button onclick="navigate('g2g')" class="nav-link" id="nav-g2g">Ghost to Guest</button>
-                    <button onclick="navigate('research')" class="nav-link" id="nav-research">Research</button>
-                    <button onclick="navigate('events')" class="nav-link" id="nav-events">Events</button>
-                    <button onclick="navigate('publications')" class="nav-link" id="nav-publications">Publications</button>
-                    <button onclick="navigate('making-room')" class="nav-link" id="nav-making-room">Making Room</button>
-                    <button onclick="navigate('people')" class="nav-link" id="nav-people">People</button>
-                    <button onclick="navigate('contact')" class="nav-link" id="nav-contact">Contact</button>
+                    <a href="#home" data-section="home" class="nav-link active-nav" id="nav-home">Home</a>
+                    <a href="#about" data-section="about" class="nav-link" id="nav-about">About</a>
+                    <a href="#g2g" data-section="g2g" class="nav-link" id="nav-g2g">Ghost to Guest</a>
+                    <a href="#research" data-section="research" class="nav-link" id="nav-research">Research</a>
+                    <a href="#events" data-section="events" class="nav-link" id="nav-events">Events</a>
+                    <a href="#publications" data-section="publications" class="nav-link" id="nav-publications">Publications</a>
+                    <a href="#making-room" data-section="making-room" class="nav-link" id="nav-making-room">Making Room</a>
+                    <a href="#people" data-section="people" class="nav-link" id="nav-people">People</a>
+                    <a href="#contact" data-section="contact" class="nav-link" id="nav-contact">Contact</a>
                 </nav>
 
                 <!-- Mobile menu button -->
@@ -181,17 +185,17 @@
         </div>
 
         <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="hidden md:hidden bg-institute-offwhite border-b border-institute-warmgray/20">
+                <div id="mobile-menu" class="hidden md:hidden bg-institute-offwhite border-b border-institute-warmgray/20">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-sm uppercase tracking-wide">
-                <button onclick="navigate('home'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-institute-navy hover:text-institute-burgundy">Home</button>
-                <button onclick="navigate('about'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-institute-navy hover:text-institute-burgundy">About</button>
-                <button onclick="navigate('g2g'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-institute-navy hover:text-institute-burgundy">Ghost to Guest</button>
-                <button onclick="navigate('research'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-institute-navy hover:text-institute-burgundy">Research</button>
-                <button onclick="navigate('events'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-institute-navy hover:text-institute-burgundy">Events</button>
-                <button onclick="navigate('publications'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-institute-navy hover:text-institute-burgundy">Publications</button>
-                <button onclick="navigate('making-room'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-institute-navy hover:text-institute-burgundy">Making Room</button>
-                <button onclick="navigate('people'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-institute-navy hover:text-institute-burgundy">People</button>
-                <button onclick="navigate('contact'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-institute-navy hover:text-institute-burgundy">Contact</button>
+                <a href="#home" data-section="home" data-close="true" class="nav-link block w-full text-left px-3 py-2 text-institute-navy hover:text-institute-burgundy">Home</a>
+                <a href="#about" data-section="about" data-close="true" class="nav-link block w-full text-left px-3 py-2 text-institute-navy hover:text-institute-burgundy">About</a>
+                <a href="#g2g" data-section="g2g" data-close="true" class="nav-link block w-full text-left px-3 py-2 text-institute-navy hover:text-institute-burgundy">Ghost to Guest</a>
+                <a href="#research" data-section="research" data-close="true" class="nav-link block w-full text-left px-3 py-2 text-institute-navy hover:text-institute-burgundy">Research</a>
+                <a href="#events" data-section="events" data-close="true" class="nav-link block w-full text-left px-3 py-2 text-institute-navy hover:text-institute-burgundy">Events</a>
+                <a href="#publications" data-section="publications" data-close="true" class="nav-link block w-full text-left px-3 py-2 text-institute-navy hover:text-institute-burgundy">Publications</a>
+                <a href="#making-room" data-section="making-room" data-close="true" class="nav-link block w-full text-left px-3 py-2 text-institute-navy hover:text-institute-burgundy">Making Room</a>
+                <a href="#people" data-section="people" data-close="true" class="nav-link block w-full text-left px-3 py-2 text-institute-navy hover:text-institute-burgundy">People</a>
+                <a href="#contact" data-section="contact" data-close="true" class="nav-link block w-full text-left px-3 py-2 text-institute-navy hover:text-institute-burgundy">Contact</a>
             </div>
         </div>
     </header>
@@ -315,7 +319,7 @@
 
                     <div class="bg-institute-offwhite p-6 border-l-4 border-institute-gold mt-8">
                         <h3 class="font-serif text-xl text-institute-navy mb-2">Fundamental Paper</h3>
-                        <p class="text-institute-warmgray text-sm mb-2">The core philosophical and historical arguments of this model are detailed in the forthcoming article, <em>"Ghost to Guest: Hospitality and the Future of Psychological Classification."</em> See <button aria-label="Navigate to Publications" onclick="navigate('publications')" class="text-institute-burgundy hover:underline">Publications</button> for more details.</p>
+                        <p class="text-institute-warmgray text-sm mb-2">The core philosophical and historical arguments of this model are detailed in the forthcoming article, <em>"Ghost to Guest: Hospitality and the Future of Psychological Classification."</em> See <a href="#publications" data-section="publications" aria-label="Navigate to Publications" class="text-institute-burgundy hover:underline">Publications</a> for more details.</p>
                     </div>
                 </div>
             </div>
@@ -856,9 +860,9 @@
                 <span class="font-serif text-lg text-white font-bold tracking-wider">G2G</span>
                 <span class="ml-2">© 2026 Ghost to Guest Institute. All rights reserved.</span>
             </div>
-            <div class="flex items-center space-x-6">
-                <button aria-label="Navigate to Home" onclick="navigate('home')" class="hover:text-white transition-colors">Home</button>
-                <button aria-label="Navigate to Contact" onclick="navigate('contact')" class="hover:text-white transition-colors">Contact</button>
+                <div class="flex items-center space-x-6">
+                <a href="#home" data-section="home" aria-label="Navigate to Home" class="hover:text-white transition-colors">Home</a>
+                <a href="#contact" data-section="contact" aria-label="Navigate to Contact" class="hover:text-white transition-colors">Contact</a>
                 <a href="http://drkuzgun.com/" target="_blank" class="hover:text-white transition-colors">Dr Kuzgun</a>
                 <span class="w-px h-4 bg-white/20"></span>
                 <a href="https://www.instagram.com/ghost.to.guest/" target="_blank" rel="noopener noreferrer" class="hover:text-institute-gold transition-colors" aria-label="Instagram">
@@ -899,12 +903,10 @@
                 targetSection.classList.add('active');
             }
 
-            // Set active state on corresponding nav links (desktop + mobile)
-            const targetLinks = document.querySelectorAll(`[onclick*="navigate('${sectionId}')"]`);
+            // Set active state on corresponding nav links (desktop + mobile) via data-section
+            const targetLinks = document.querySelectorAll(`[data-section="${sectionId}"]`);
             targetLinks.forEach(link => {
-                if (link.id) { 
-                   link.classList.add('active-nav');
-                }
+                link.classList.add('active-nav');
             });
 
             // Scroll to top
@@ -915,6 +917,29 @@
                 history.pushState({ section: sectionId }, '', '#' + sectionId);
             }
         }
+
+            // Delegated click handler for <a data-section> links
+            document.addEventListener('click', (e) => {
+                const a = e.target.closest && e.target.closest('a[data-section]');
+                if (!a) return;
+
+                // Allow modifier clicks and non-left clicks to open in new tab/window
+                if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+                e.preventDefault();
+                const section = a.dataset.section;
+                if (!section) return;
+
+                // If link wants to close mobile menu, do it
+                if (a.dataset.close) {
+                    // ensure menu is closed after navigation
+                    navigate(section, true);
+                    // slight delay to allow navigate UI updates
+                    setTimeout(() => toggleMobileMenu(), 50);
+                } else {
+                    navigate(section, true);
+                }
+            });
 
         // Mobile menu toggle
         function toggleMobileMenu() {
